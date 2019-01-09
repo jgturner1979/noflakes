@@ -1,0 +1,58 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1rem;
+}
+
+#signupHeader {
+    color: #AC2522;
+    font-family: 'Open Sans', sans-serif;
+}
+
+#signupSubHead {
+    color: #333333;
+}
+
+#backgroundImage {
+    background-image: url("/../../assets/images/Happy-gay-couple-outdoors-1-color.jpg");
+    /* background: linear-gradient(to left, rgba(105, 127, 139, 0.1) 0%, rgba(105, 127, 139, 0.5) 75%, #697F8B 100%), url("/../../assets/images/Happy-gay-couple-outdoors-1-color.jpg"); */
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 0 auto;
+    max-width: 100%;
+    padding: 0;
+}
+
+#loginRow{
+    padding: 4rem;
+}
+
+#loginButtons {
+    clear: both;
+    margin: 0;
+    
+}
+
+#snowFlake {
+    padding-left: 4rem;
+}
+
+.btn-login {
+    background-color: #ffffff;
+    color: #AC2522;
+    text-align: left;
+    border: 2px solid #AC2522;
+    font-size: 2rem;
+}
+
+#snowFlakeImg {
+    display: inline-block;
+    width: 50px;
+    margin: auto;
+    -webkit-animation:spin 10s linear infinite;
+    -moz-animation:spin 10s linear infinite;
+    animation:spin 10s linear infinite;
+}
+    
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
