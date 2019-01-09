@@ -7,8 +7,8 @@ router.route('/')
     .post(profileController.create)
     .get(profileController.getAll);
 
-router.route('/:id')
-    // .get(profileController.getOne)
+router.route('/:username')
+    .get(profileController.getOne);
     // .put(profileController.update)
     // .destroy(profileController.destroy);
 

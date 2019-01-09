@@ -98,6 +98,9 @@ class CreateProfile extends Component {
                 soc_quest15: this.state.question15
             })
             .then(function(res, req){
+                console.log('testing');
+                console.log(res);
+                // window.location.href = "../member";})
                 res.send("/api/profiles");})
             .catch(err => console.log(err));
         }

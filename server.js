@@ -1,37 +1,44 @@
-require("dotenv").config();
+//Express dependencies
 const express = require("express");
 var session = require("express-session");
+const app = express();
+
+require("dotenv").config();
 
 //Passport.js for Password verification
-var passport = require("./config/passport");
+const passport = require("./config/passport");
+// require("./config/passport")(passport);
 
+//Morgan and Logger dependencies
 var db = require("./models");
 const logger = require('morgan');
 
-// const routes = require("./routes");
-const app = express();
 const PORT = process.env.PORT || 3001;
 
 // Tells express to use the logger so you can see requests as they come in
-// app.use(logger('dev'));
+app.use(logger('dev'));
 
 // Define middleware here
-// app.use(express.urlencoded({ extended: true }));
-// app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
 // Serve up static assets (usually on heroku)
-// if (process.env.NODE_ENV === "production") {
-//   app.use(express.static("client/build"));
-// }
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
 
 // We need to use sessions to keep track of our user's login status
-// app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true }));
-// app.use(passport.initialize());
-// app.use(passport.session());
+app.use(session({ 
+  secret: "keyboard cat",
+  resave: true,
+  saveUninitialized: true
+}));
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Add routes, both API and view
-// app.use(routes);
-
 app.use('/api', require("./routes"));
+// app.use('/auth', require("./routes"));
 app.use('/', require("./routes/htmlRoutes"));
 
 // Connect to the MySQL DB

@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import { Input, Label } from "../Form";
+import API from "../../utils/API";
 
 class Modal extends Component {
     state = {
-        userName : '',
-        password : ''
+        email : '',
+        password : '',
+        loggedIn : false
     }
     
     handleInputChange = event => {
@@ -14,10 +16,28 @@ class Modal extends Component {
         this.setState({[name]: value});
     };
 
+    LoginUser = event => {
+        event.preventDefault();
+        if (this.state.email && this.state.password) {
+            API.login({
+                email: this.state.email,
+                password: this.state.password
+            })
+            .then(res => {
+                if(res.data.loggedIn) {
+                    this.setState({
+                        loggedIn: true
+                    });
+                };
+                console.log("logged in!")
+            }).catch(err => console.log(err));
+        }
+    };
+
     render(props) {
         return (
         
-            <div className="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div className="modal fade" id="login" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div className="modal-dialog modal-md modal-dialog-centered" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
@@ -29,12 +49,12 @@ class Modal extends Component {
                     
                         <div className="modal-body">
                             <form>
-                                <Label>Username</Label>
+                                <Label>Email</Label>
                                 <Input
                                     type="text"
-                                    name="userName"
-                                    value={this.state.userName}
-                                    placeholder="Enter your username"
+                                    name="email"
+                                    value={this.state.email}
+                                    placeholder="Enter your email"
                                      onChange={this.handleInputChange}/>
                             
                                  <Label>Password</Label>
@@ -47,7 +67,7 @@ class Modal extends Component {
                             </form>
                         </div>
                         <div className="modal-footer">
-                            <button type="button" class="btn btn-secondary" {...props}>Login In</button>
+                            <button type="button" className="btn btn-secondary" {...props} onClick={this.LoginUser}>Login In</button>
                         </div>
                     </div>
                 </div>

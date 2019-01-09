@@ -9,7 +9,7 @@ class Member extends Component {
 
     //When the component mounts it'll load the user's profile information.
     componentDidMount() {
-        this.getProfile();
+        this.getUserProfile();
     }
 
     getUserProfile = () => {
@@ -29,6 +29,7 @@ class Member extends Component {
                         <h3>Display Name:</h3>
                     </div>
                     <div className="col-lg-6">
+                        
                     </div>
                 </div>
             </div>

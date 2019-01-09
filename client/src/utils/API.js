@@ -8,4 +8,10 @@ export default {
     getProfile: function(Profiles) {
       return axios.get("/api/profiles/" + Profiles.username);
       },
+    // login: function(loginInfo) {
+    //   return axios.post("/auth/profiles/login", loginInfo);
+    // },
+    // isLoggedIn: function() {
+    //   return axios.get("/auth/profiles/isLoggedIn");
+    // }
 };

@@ -12,7 +12,7 @@ module.exports = function (app) {
   app.post("/login", passport.authenticate("local"), function (req, res) {
     console.log("THIS IS WHAT IS BEING SENT BACK", req.body);
     
-    res.send("/members");
+    res.send("/member");
   });
 
 //Create a new user profile

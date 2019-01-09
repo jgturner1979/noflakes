@@ -31,27 +31,35 @@ function create (req, res) {
           console.log("Login error: " + err)
           return next(err);
         }
-        return res.send('/members');
+        console.log("Profile created.");
+        return res.send("/member");
       });
-    // console.log("App Post api profiles:" + dbProfiles);
-    // res.json(req.body);
   }).catch(function(err) {
       console.log(err);
       res.json(err);
   });
-  // db.Profiles
-  //   .create(req.body)
-  //   .then(dbModel => res.json(dbModel))
-  //   .catch(err => res.status(422).json(err));
-}
+};
 
 function getAll(req, res) {
-  console.log('HI', req);
-  res.json({ message: 'hi mom' });
-}
+  db.Profiles.findAll({})
+  .then(function (data) {
+    console.log(data);
+    res.json(data);
+  });
+};
+
+function getOne(req, res) {
+  db.Profiles.findOne({
+    where: { username: req.params.username}
+  }).then(function (data) {
+    console.log(data);
+    res.json(data);
+  });
+};
 
 // Defining methods for the profileController
 module.exports = {
   create,
-  getAll
+  getAll,
+  getOne
 };
