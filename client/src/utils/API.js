@@ -5,8 +5,9 @@ export default {
     saveProfile: function(Profiles) {
       return axios.post("/api/profiles", Profiles);
       },
-    getProfile: function(Profiles) {
-      return axios.get("/api/profiles/" + Profiles.username);
+    getProfile: function(User) {
+      console.log(User.username)
+      return axios.get("/api/profiles/" + User.username);
       },
     // login: function(loginInfo) {
     //   return axios.post("/auth/profiles/login", loginInfo);

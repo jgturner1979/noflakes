@@ -14,6 +14,7 @@ import API from "../utils/API";
 class CreateProfile extends Component {
 
     state = {
+            redirect: false,
             displayName: '',
             userName: '',
             email: '',
@@ -97,11 +98,15 @@ class CreateProfile extends Component {
                 soc_quest14: this.state.question14,
                 soc_quest15: this.state.question15
             })
-            .then(function(res, req){
+            .then( (res, req) => {
                 console.log('testing');
                 console.log(res);
+                this.setState({
+                    redirect: true
+                });
+                this.props.isAuthenticated(res.data.username);
                 // window.location.href = "../member";})
-                res.send("/api/profiles");})
+            })
             .catch(err => console.log(err));
         }
 
@@ -166,7 +171,7 @@ class CreateProfile extends Component {
                     <LabelChoices>Gay</LabelChoices>
                     <RadioBtn
                         name="identifyAs"
-                        id="identifyAs"
+                        id="gay"
                         value="gay"
                         checked={this.state.identifyAs === "gay"}
                         onChange={this.handleInputChange}/>
@@ -174,7 +179,7 @@ class CreateProfile extends Component {
                     <LabelChoices>Bisexual</LabelChoices>
                     <RadioBtn
                         name="identifyAs"
-                        id="identifyAs"
+                        id="bisexual"
                         value="bisexual"
                         checked={this.state.identifyAs === "bisexual"}
                         onChange={this.handleInputChange}/>
@@ -182,7 +187,7 @@ class CreateProfile extends Component {
                     <LabelChoices>Queer</LabelChoices>
                     <RadioBtn
                         name="identifyAs"
-                        id="identifyAs"
+                        id="queer"
                         value="queer"
                         checked={this.state.identifyAs === "queer"}
                         onChange={this.handleInputChange}/>
@@ -190,7 +195,7 @@ class CreateProfile extends Component {
                     <LabelChoices>Straight/Curious</LabelChoices>
                     <RadioBtn
                         name="identifyAs"
-                        id="identifyAs"
+                        id="straight-curious"
                         value="straight-curious"
                         checked={this.state.identifyAs === "straight-curious"}
                         onChange={this.handleInputChange}/>
@@ -198,28 +203,28 @@ class CreateProfile extends Component {
                     <Label>Relationship Status</Label>
                     <RadioBtn
                         name="relationStat"
-                        id="relationStat"
+                        id="single"
                         value="single"
                         checked={this.state.relationStat === "single"}
                         onChange={this.handleInputChange}/>
                     <LabelChoices>Single</LabelChoices>
                     <RadioBtn
                         name="relationStat"
-                        id="relationStat"
+                        id="dating"
                         value="dating"
                         checked={this.state.relationStat === "dating"}
                         onChange={this.handleInputChange}/>
                     <LabelChoices>Dating</LabelChoices>
                     <RadioBtn
                         name="relationStat"
-                        id="relationStat"
+                        id="relationship"
                         value="relationship"
                         checked={this.state.relationStat === "relationship"}
                         onChange={this.handleInputChange}/>
                     <LabelChoices>In a Relationship</LabelChoices>
                     <RadioBtn
                         name="relationStat"
-                        id="relationStat"
+                        id="polyamor"
                         value="polyamor"
                         checked={this.state.relationStat === "polyamor"}
                         onChange={this.handleInputChange}/>
@@ -447,9 +452,9 @@ class CreateProfile extends Component {
                     <Label className="surveyResult">Value:<span id="result">
                             {this.state.question15}</span>
                     </Label>
-                </form>           
+                </form>  
+                {this.renderRedirect()}
                 <FormBtn id="submitProfile" onClick={this.handleFormSubmit}>Submit My Profile</FormBtn>
-                
             </div>
 
         );

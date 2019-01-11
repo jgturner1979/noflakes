@@ -1,6 +1,6 @@
 const db = require("../models");
 
-function create (req, res) {
+function create(req, res) {
   db.Profiles.create({
     display_name: req.body.display_name,
     username: req.body.username,
@@ -26,14 +26,15 @@ function create (req, res) {
     soc_quest14: req.body.soc_quest14,
     soc_quest15: req.body.soc_quest15
   }).then(function (dbProfiles) {
-      req.login(dbProfiles, function(err) {
-        if (err) {
-          console.log("Login error: " + err)
-          return next(err);
-        }
-        console.log("Profile created.");
-        return res.send("/member");
-      });
+      // req.login(dbProfiles, function(err) {
+      //   if (err) {
+      //     console.log("Login error: " + err)
+      //     return next(err);
+      //   }
+        console.log("Profile created. " + dbProfiles);
+        res.json(dbProfiles);
+        // return res.send("/member");
+      // });
   }).catch(function(err) {
       console.log(err);
       res.json(err);
