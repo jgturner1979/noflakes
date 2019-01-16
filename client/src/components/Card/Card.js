@@ -9,7 +9,7 @@ export function CardContainer({ children }) {
 
 export function Card({ children }) {
     return <div className="card" id="memberCard" style={{width: 10 + 'rem'}}>
-                <img src="https://via.placeholder.com/200.jpg/333333" className="card-img-top" alt="member photo"></img>
+                <img src="https://via.placeholder.com/200.jpg/333333" className="card-img-top" alt="ProfileImage"></img>
                 {children}
             </div>
 }
