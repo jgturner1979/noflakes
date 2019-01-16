@@ -24,6 +24,7 @@ class CreateProfile extends Component {
             relationStat: '',
             aboutMe: '',
             value: '5',
+            // socialScale: ['5','5','5','5','5','5','5','5','5','5','5','5','5','5','5']
             question1: '5',
             question2: '5',
             question3: '5',
@@ -40,6 +41,8 @@ class CreateProfile extends Component {
             question14: '5',
             question15: '5'
     };
+
+    result = () => this.state.question1 + this.state.question2 + this
 
     handleInputChange = event => {
         console.log(event);
@@ -96,7 +99,7 @@ class CreateProfile extends Component {
                 soc_quest12: this.state.question12,
                 soc_quest13: this.state.question13,
                 soc_quest14: this.state.question14,
-                soc_quest15: this.state.question15
+                soc_quest15: this.state.question15,
             })
             .then( (res, req) => {
                 console.log('testing');
@@ -172,63 +175,66 @@ class CreateProfile extends Component {
                     <RadioBtn
                         name="identifyAs"
                         id="gay"
-                        value="gay"
-                        checked={this.state.identifyAs === "gay"}
+                        value="Gay"
+                        checked={this.state.identifyAs === "Gay"}
                         onChange={this.handleInputChange}/>
                     
                     <LabelChoices>Bisexual</LabelChoices>
                     <RadioBtn
                         name="identifyAs"
                         id="bisexual"
-                        value="bisexual"
-                        checked={this.state.identifyAs === "bisexual"}
+                        value="Bisexual"
+                        checked={this.state.identifyAs === "Bisexual"}
                         onChange={this.handleInputChange}/>
 
                     <LabelChoices>Queer</LabelChoices>
                     <RadioBtn
                         name="identifyAs"
                         id="queer"
-                        value="queer"
-                        checked={this.state.identifyAs === "queer"}
+                        value="Queer"
+                        checked={this.state.identifyAs === "Queer"}
                         onChange={this.handleInputChange}/>
                     
                     <LabelChoices>Straight/Curious</LabelChoices>
                     <RadioBtn
                         name="identifyAs"
                         id="straight-curious"
-                        value="straight-curious"
-                        checked={this.state.identifyAs === "straight-curious"}
+                        value="Straight-Curious"
+                        checked={this.state.identifyAs === "Straight-Curious"}
                         onChange={this.handleInputChange}/>
 
                     <Label>Relationship Status</Label>
-                    <RadioBtn
-                        name="relationStat"
-                        id="single"
-                        value="single"
-                        checked={this.state.relationStat === "single"}
-                        onChange={this.handleInputChange}/>
                     <LabelChoices>Single</LabelChoices>
                     <RadioBtn
                         name="relationStat"
-                        id="dating"
-                        value="dating"
-                        checked={this.state.relationStat === "dating"}
+                        id="single"
+                        value="Single"
+                        checked={this.state.relationStat === "Single"}
                         onChange={this.handleInputChange}/>
+
                     <LabelChoices>Dating</LabelChoices>
                     <RadioBtn
                         name="relationStat"
-                        id="relationship"
-                        value="relationship"
-                        checked={this.state.relationStat === "relationship"}
+                        id="dating"
+                        value="Dating"
+                        checked={this.state.relationStat === "Dating"}
                         onChange={this.handleInputChange}/>
+
                     <LabelChoices>In a Relationship</LabelChoices>
                     <RadioBtn
                         name="relationStat"
-                        id="polyamor"
-                        value="polyamor"
-                        checked={this.state.relationStat === "polyamor"}
+                        id="relationship"
+                        value="Relationship"
+                        checked={this.state.relationStat === "Relationship"}
                         onChange={this.handleInputChange}/>
-                    <LabelChoices>Polyamorous</LabelChoices>
+
+                    <LabelChoices>Polyamorous</LabelChoices>                   
+                    <RadioBtn
+                        name="relationStat"
+                        id="polyamor"
+                        value="Polyamorous"
+                        checked={this.state.relationStat === "Polyamorous"}
+                        onChange={this.handleInputChange}/>
 
                     <Label>What I'm Looking For</Label>
                     <TextArea
@@ -264,7 +270,7 @@ class CreateProfile extends Component {
                         id="question2"
                         onChange={this.handleSliderChange}/>
                     <Label className="surveyResult">Value:<span id="result">
-                            {this.state.value}</span>
+                            {this.state.question2}</span>
                     </Label>
                     <hr></hr>
                     <Label className="surveyQuestion">I often participate in volunteer work.</Label>

@@ -28,6 +28,7 @@ CREATE TABLE Profiles(
     soc_quest13 INTEGER NOT NULL,
     soc_quest14 INTEGER NOT NULL,
     soc_quest15 INTEGER NOT NULL,
+    social_scale INTEGER NOT NULL,
     createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY(id)
 );

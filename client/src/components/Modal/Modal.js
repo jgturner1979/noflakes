@@ -1,13 +1,17 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
 import { Input, Label } from "../Form";
 import API from "../../utils/API";
 
 class Modal extends Component {
+
     state = {
-        email : '',
-        password : '',
-        loggedIn : false
+        username : "",
+        password : "",
+        loggedIn : false,
+        redirect: false,
     }
+
     
     handleInputChange = event => {
         console.log(event);
@@ -16,19 +20,28 @@ class Modal extends Component {
         this.setState({[name]: value});
     };
 
+    renderRedirect = () => {
+        if (this.state.redirect) {
+            return <Redirect to='/member' />
+        }
+    }
+
     LoginUser = event => {
         event.preventDefault();
-        if (this.state.email && this.state.password) {
+        console.log("When Login Button Clicked: ", this.state);
+        if (this.state.username && this.state.password) {
             API.login({
-                email: this.state.email,
+                username: this.state.username,
                 password: this.state.password
             })
             .then(res => {
-                if(res.data.loggedIn) {
-                    this.setState({
-                        loggedIn: true
-                    });
-                };
+                console.log(res);
+                this.setState({
+                    redirect: true,
+                });
+                this.props.isAuthenticated(res.data.username);
+                console.log("Is this the User?", res.data.username);
+                // console.log(this.props);
                 console.log("logged in!")
             }).catch(err => console.log(err));
         }
@@ -49,12 +62,12 @@ class Modal extends Component {
                     
                         <div className="modal-body">
                             <form>
-                                <Label>Email</Label>
+                                <Label>Username</Label>
                                 <Input
                                     type="text"
-                                    name="email"
-                                    value={this.state.email}
-                                    placeholder="Enter your email"
+                                    name="username"
+                                    value={this.state.username}
+                                    placeholder="Enter your username"
                                      onChange={this.handleInputChange}/>
                             
                                  <Label>Password</Label>
@@ -66,8 +79,9 @@ class Modal extends Component {
                                     onChange={this.handleInputChange}/>
                             </form>
                         </div>
+                        {this.renderRedirect()}
                         <div className="modal-footer">
-                            <button type="button" className="btn btn-secondary" {...props} onClick={this.LoginUser}>Login In</button>
+                            <button type="button" className="btn btn-secondary" data-dismiss="modal" {...props} onClick={this.LoginUser}>Login In</button>
                         </div>
                     </div>
                 </div>

@@ -2,11 +2,12 @@ import React from "react";
 import Login from "../components/Login";
 import Wrapper from "../components/Wrapper"
 
-function LoginScreen() {
+function LoginScreen(props) {
+    console.log(props);
     return (
         <div>
             <Wrapper>
-                <Login />
+                <Login {...props}/>
             </Wrapper>
         </div>
     )

@@ -4,12 +4,10 @@ import Modal from "../Modal";
 import "./Login.css";
 
 class Login extends Component {
-
+    
     state = {
         redirect: false,
         modal: false,
-        userName: '',
-        password: ''
     }
 
     handleInputChange = event => {
@@ -34,10 +32,11 @@ class Login extends Component {
     }
 
     renderModal = () => {
+        console.log(this.props);
         if (this.state.modal) {
             return (
                 <div>
-                    <Modal />
+                    <Modal {...this.props}/>
                 </div>
             )
         }

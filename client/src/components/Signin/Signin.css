@@ -22,6 +22,10 @@ body {
     padding: 0;
 }
 
+#introParagraph {
+    color: #333333;
+}
+
 #loginRow{
     padding: 4rem;
 }

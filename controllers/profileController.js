@@ -1,6 +1,9 @@
 const db = require("../models");
 
 function create(req, res) {
+  let socialScale = +req.body.soc_quest1 + +req.body.soc_quest2 + +req.body.soc_quest3 + +req.body.soc_quest4 + +req.body.soc_quest5 + +req.body.soc_quest6 + +req.body.soc_quest7 + +req.body.soc_quest8 + +req.body.soc_quest9 + +req.body.soc_quest10 + +req.body.soc_quest11 + +req.body.soc_quest12 + +req.body.soc_quest13 + +req.body.soc_quest14 + +req.body.soc_quest15;
+  console.log(socialScale);
+
   db.Profiles.create({
     display_name: req.body.display_name,
     username: req.body.username,
@@ -24,7 +27,8 @@ function create(req, res) {
     soc_quest12: req.body.soc_quest12,
     soc_quest13: req.body.soc_quest13,
     soc_quest14: req.body.soc_quest14,
-    soc_quest15: req.body.soc_quest15
+    soc_quest15: req.body.soc_quest15,
+    social_scale: socialScale
   }).then(function (dbProfiles) {
       // req.login(dbProfiles, function(err) {
       //   if (err) {

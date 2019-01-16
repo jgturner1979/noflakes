@@ -1,0 +1,28 @@
+#allMembers {
+    width: 100%;
+    position: relative;
+    margin: 0 auto;
+}
+
+#memberCard {
+    margin-right: 1rem;
+    padding: .5rem;
+}
+
+#memberCardBody {
+    padding: 10px;
+    line-height: 1rem;
+}
+
+h4 {
+    font-size: 1rem;
+    color: #AC2522;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+}
+
+p {
+    font-size: 1rem;
+    color: #89AFDD;
+    line-height: 1rem;
+}
