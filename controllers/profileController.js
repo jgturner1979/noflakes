@@ -1,8 +1,10 @@
 const db = require("../models");
+var Sequelize = require("sequelize");
+const Op = Sequelize.Op;
 
 function create(req, res) {
   let socialScale = +req.body.soc_quest1 + +req.body.soc_quest2 + +req.body.soc_quest3 + +req.body.soc_quest4 + +req.body.soc_quest5 + +req.body.soc_quest6 + +req.body.soc_quest7 + +req.body.soc_quest8 + +req.body.soc_quest9 + +req.body.soc_quest10 + +req.body.soc_quest11 + +req.body.soc_quest12 + +req.body.soc_quest13 + +req.body.soc_quest14 + +req.body.soc_quest15;
-  console.log(socialScale);
+  // console.log(socialScale);
 
   db.Profiles.create({
     display_name: req.body.display_name,
@@ -28,14 +30,15 @@ function create(req, res) {
     soc_quest13: req.body.soc_quest13,
     soc_quest14: req.body.soc_quest14,
     soc_quest15: req.body.soc_quest15,
-    social_scale: socialScale
+    social_scale: socialScale,
+    // profile_image: req.body.file
   }).then(function (dbProfiles) {
       // req.login(dbProfiles, function(err) {
       //   if (err) {
       //     console.log("Login error: " + err)
       //     return next(err);
       //   }
-        console.log("Profile created. " + dbProfiles);
+        console.log('Profile created.');
         res.json(dbProfiles);
         // return res.send("/member");
       // });
@@ -46,9 +49,10 @@ function create(req, res) {
 };
 
 function getAll(req, res) {
-  db.Profiles.findAll({})
+  console.log("All Profiles: ", req.user);
+  db.Profiles.findAll({
+  })
   .then(function (data) {
-    console.log(data);
     res.json(data);
   });
 };
@@ -57,10 +61,10 @@ function getOne(req, res) {
   db.Profiles.findOne({
     where: { username: req.params.username}
   }).then(function (data) {
-    console.log(data);
     res.json(data);
   });
 };
+
 
 // Defining methods for the profileController
 module.exports = {

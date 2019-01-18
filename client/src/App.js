@@ -25,17 +25,14 @@ class App extends Component {
   }
 
   getLoginData = (data) => {
-    console.log(data);
     API.appLogin(data)
         .then(res => {
-          console.log("LOOK AT ME!!!! ", res);
             this.setState({ user: res.data })
         })
             .catch(err => console.log(err));
   }
 
 render() {
-  console.log("User: ", this.state.user);
   return (
     <Router>
       <div>

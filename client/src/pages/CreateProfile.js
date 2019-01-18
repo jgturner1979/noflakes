@@ -10,6 +10,7 @@ import {
     FormBtn
 } from "../components/Form";
 import API from "../utils/API";
+import ReactUploadImage from "../components/UploadImage";
 
 class CreateProfile extends Component {
 
@@ -42,19 +43,12 @@ class CreateProfile extends Component {
             question15: '5'
     };
 
-    result = () => this.state.question1 + this.state.question2 + this
-
     handleInputChange = event => {
         console.log(event);
         const name = event.target.name;
         const value = event.target.value;
         this.setState({[name]: value});
     };
-
-    // handleInputRadio = event => {
-    //     const identifyAs = event.target.value;
-    //     this.setState({identifyAs : identifyAs})
-    // };
 
     handleSliderChange = event => {
         const name = event.target.name;
@@ -67,10 +61,6 @@ class CreateProfile extends Component {
             return <Redirect to='/member' />
         }
     }
-
-    // loadProfile = () => {
-    //     API.getProfile()
-    // }
 
     handleFormSubmit = event => {
         event.preventDefault();
@@ -102,18 +92,13 @@ class CreateProfile extends Component {
                 soc_quest15: this.state.question15,
             })
             .then( (res, req) => {
-                console.log('testing');
-                console.log(res);
                 this.setState({
                     redirect: true
                 });
                 this.props.isAuthenticated(res.data.username);
-                // window.location.href = "../member";})
             })
             .catch(err => console.log(err));
         }
-
-
     };
 
     render() {
@@ -157,9 +142,8 @@ class CreateProfile extends Component {
                         value={this.state.password}
                         placeholder="Enter your password"
                         onChange={this.handleInputChange}/>
-
                 </form>
-
+                {/* <ReactUploadImage /> */}
                 <form>
                     <h3>About Me</h3>
                     <hr></hr>

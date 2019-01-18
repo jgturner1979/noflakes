@@ -3,8 +3,13 @@ import "./Card.css";
 
 export function CardContainer({ children }) {
   return <div className="container-fluid my-auto" id="allMembers">
-            <div className="row">{children}</div>
-            </div>;
+                <div className="row">
+                    <h3>Check Out these Members</h3>
+                </div>
+                <div className="row">
+                    {children}
+                </div>
+        </div>;
 }
 
 export function Card({ children }) {

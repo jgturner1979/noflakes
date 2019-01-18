@@ -3,8 +3,6 @@ import React, { Component } from "react";
 import {CardContainer, Card} from "../components/Card";
 import API from "../utils/API";
 
-
-
 class Member extends Component {
 
     state = {
@@ -24,7 +22,7 @@ class Member extends Component {
     }
 
     render(){
-        console.log("Member Render: ", this.props.displayProfile);
+        // console.log("Member Render: ", this.props.displayProfile);
         return(
             <div className="container" id="userProfileInfo">
                 <div className="row">
@@ -59,7 +57,7 @@ class Member extends Component {
                         <p>{this.props.displayProfile.relationship_status}</p>
                     </div>
                 </div>
-                <hr></hr>
+                {/* <hr></hr> */}
                 <div className="row">
                     <div className="col-lg-3">
                         <h6>Looking for:</h6>
@@ -68,6 +66,7 @@ class Member extends Component {
                         <p>{this.props.displayProfile.looking_for}</p>
                     </div>
                 </div>
+                <hr></hr>
                 <CardContainer>
                 {this.state.members.map(member => {
                     return(

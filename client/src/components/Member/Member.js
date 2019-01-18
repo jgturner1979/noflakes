@@ -28,7 +28,7 @@ class Members extends Component {
                     <Card 
                     // <img src="https://via.placeholder.com/150.jpg/333333" className="card-img-top" alt="member photo"></img>
                     className="card-body">
-                        <h4 className="card-text">{member.display_name}</h4>
+                        <h4 className="card-text" id="memberName">{member.display_name}</h4>
                         <h5 className="card-text">{member.sexual_identity}</h5>
                         <h5 className="card-text">{member.relationship_status}</h5>
                         <h5 className="card-text">{member.user_age}</h5>

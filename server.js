@@ -1,16 +1,22 @@
 //Express dependencies
 const express = require("express");
-var session = require("express-session");
+const session = require("express-session");
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 const app = express();
+const auth = require('./routes/authRoutes');
+const profile = require('./routes/profileRoutes');
+const passport = require('passport');
+// const multer = require("multer");
 
 require("dotenv").config();
 
 //Passport.js for Password verification
-const passport = require("./config/passport");
+require("./config/passport")(passport);
 // require("./config/passport")(passport);
 
 //Morgan and Logger dependencies
-var db = require("./models");
+const db = require("./models");
 const logger = require('morgan');
 
 const PORT = process.env.PORT || 3001;
@@ -19,8 +25,8 @@ const PORT = process.env.PORT || 3001;
 app.use(logger('dev'));
 
 // Define middleware here
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
@@ -28,18 +34,30 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // We need to use sessions to keep track of our user's login status
+app.use(cookieParser());
 app.use(session({ 
   secret: "keyboard cat",
-  resave: true,
-  saveUninitialized: true
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false }
 }));
 app.use(passport.initialize());
 app.use(passport.session());
 
 // Add routes, both API and view
+// app.use('/api', profile);
+// app.use('/api', auth);
+
 app.use('/api', require("./routes"));
 // app.use('/auth', require("./routes"));
-app.use('/', require("./routes/htmlRoutes"));
+// app.use('/', require("./routes/htmlRoutes"));
+// app.use('/', require('./routes/imageRoutes'));
+
+// app.use(() => multer({ dest: './public/uploads/',
+//   rename: function (fieldname, filename) {
+//     return filename;
+//   },
+//  }));
 
 // Connect to the MySQL DB
 

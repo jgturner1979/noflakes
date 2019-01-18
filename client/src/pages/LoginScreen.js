@@ -3,7 +3,6 @@ import Login from "../components/Login";
 import Wrapper from "../components/Wrapper"
 
 function LoginScreen(props) {
-    console.log(props);
     return (
         <div>
             <Wrapper>

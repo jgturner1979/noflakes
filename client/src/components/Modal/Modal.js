@@ -14,7 +14,6 @@ class Modal extends Component {
 
     
     handleInputChange = event => {
-        console.log(event);
         const name = event.target.name;
         const value = event.target.value;
         this.setState({[name]: value});
@@ -28,20 +27,19 @@ class Modal extends Component {
 
     LoginUser = event => {
         event.preventDefault();
-        console.log("When Login Button Clicked: ", this.state);
+        // console.log("When Login Button Clicked: ", this.state);
         if (this.state.username && this.state.password) {
             API.login({
                 username: this.state.username,
                 password: this.state.password
             })
             .then(res => {
-                console.log(res);
+                // console.log(res.data.username);
                 this.setState({
                     redirect: true,
+                    loggedIn: true,
                 });
                 this.props.isAuthenticated(res.data.username);
-                console.log("Is this the User?", res.data.username);
-                // console.log(this.props);
                 console.log("logged in!")
             }).catch(err => console.log(err));
         }

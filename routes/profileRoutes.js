@@ -5,7 +5,8 @@ const profileController = require('../controllers/profileController');
 
 router.route('/')
     .post(profileController.create)
-    .get(profileController.getAll);
+    .get(profileController.getAll)
+    .get(profileController.getOne);
 
 router.route('/:username')
     .get(profileController.getOne);
