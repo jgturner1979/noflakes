@@ -43,7 +43,7 @@ module.exports = function(sequelize, DataTypes) {
         soc_quest14: DataTypes.INTEGER,
         soc_quest15: DataTypes.INTEGER,
         social_scale: DataTypes.INTEGER,
-        profile_image: DataTypes.STRING,
+        // profile_image: DataTypes.STRING,
         createdAt: DataTypes.DATE
     });
 
